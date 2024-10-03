@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load socialaccount %}
+
+{% block content %} 
+
+    {% if user.is_authenticated %}
+        <p>Bienvenue {{user.username}}, Vous êtes connecté !</p>
+    {% else %}
+        <a href="{% provider_login_url 'google' %}">Connexion avec Google</a>
+    {% endif %}
+   
+{% endblock %}
