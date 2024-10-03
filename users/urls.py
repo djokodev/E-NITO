@@ -1,9 +1,8 @@
 from django.urls import path, include
-from django.views.generic import TemplateView 
-from django.contrib.auth.views import LogoutView
+from . import views
 
 urlpatterns = [
-    path('loging', TemplateView.as_view(template_name='login.html')),
-    path('accounts/', include('allauth.urls')), 
-    path('logout', LogoutView.as_view()),
+    path("login/", views.loging_view, name="login"),
+    path("logout/", views.logout_view, name="logout"),
+    path("accounts/", include("allauth.urls")),
 ]

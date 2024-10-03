@@ -3,10 +3,6 @@
 
 {% block content %} 
 
-    {% if user.is_authenticated %}
-        <p>Bienvenue {{user.username}}, Vous êtes connecté !</p>
-    {% else %}
-        <a href="{% provider_login_url 'google' %}">Connexion avec Google</a>
-    {% endif %}
+    <a href="{% provider_login_url 'google' %}?next=/">Connexion avec Google</a>
    
 {% endblock %}
