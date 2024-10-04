@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %} 
+
+<div class="container">    
+    {% if orders %}
+        <table class="cart-table">
+            <thead>
+                <tr>
+                    <th>Produit</th>
+                    <th>Prix unitaire</th>
+                    <th>Quantité</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in orders %}
+                    <tr>
+                        <td>
+                            <img src="{{ order.product.thumbnail.url }}" alt="{{ order.product.name }}">
+                            <p>{{ order.product.name }}</p>
+                        </td>
+                        <td>{{ order.product.price }} Fcfa</td>
+                        <td class="quantity-input">
+                            {{ order.quantity }}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <a href="" class="btn">Passer la commande</a>
+
+        <a href="{% url 'delete_cart' %}" class="btn btn-delete">Vider le panier</a>
+    {% endif %}
+    
+{% endblock %}

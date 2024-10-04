@@ -1,13 +1,36 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CHEZ NITO</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+</head>
 </head>
 <body>
 
-    <a href="{% url 'home' %}"><h1>CHEZ NITO</h1></a>
+    <div class="container">
+
+        {% if user.is_authenticated %}
+            <div class="welcome">
+                <!--<a href="{% url 'home' %}"><h1>CHEZ NITO</h1></a>-->    
+                <p>Bienvenue {{ user.username }}!  <a href="{% url 'logout' %}">Deconnexion</a></p>
+            </div>
+        {% endif %}
+        
+        {% if user.cart %}
+            <div class="cart-icon-container">
+                <a href="{% url 'cart' %}" class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">{{ user.cart.orders.count }}</span>
+                    
+                </a>
+            </div>
+        {% endif %}
+
+    </div>
 
     {% block content %} {% endblock %}
     
