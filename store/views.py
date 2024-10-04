@@ -1,11 +1,28 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from store.models import Product, Cart, Order
 from django.urls import reverse
+from django.core.paginator import Paginator
+from django.db.models import Q
 
 
 def home(request):
+    query = request.GET.get("q")  # Récupérer la recherche de l'utilisateur
     products = Product.objects.all()
-    return render(request, "store/home.html", context={"products": products})
+
+    if query:
+        products = products.filter(
+            Q(name__icontains=query)
+        )  # Filtrer selon la recherche
+
+    paginator = Paginator(products, 6)  # Appliquer la pagination après le filtrage
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
+
+    return render(
+        request,
+        "store/home.html",
+        context={"products": page_obj, "page_obj": page_obj, "query": query},
+    )
 
 
 def product_detail(request, slug):

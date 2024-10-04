@@ -12,9 +12,14 @@
             <div class="product-price">{{ product.price }} Fcfa</div>
             <div class="product-description">{{ product.description }}</div>
             <div class="product-stock">{{ product.stock }} en stock</div>
-            <a href="{% url 'add_to_cart' product.slug %}" class="btn">Ajouter au panier</a>
+
+            {% if user.is_authenticated %}
+                <a href="{% url 'add_to_cart' product.slug %}" class="btn">Ajouter au panier</a>
+            {% endif %}
+            
             <a href="{% url 'home' %}" class="btnr">Retour</a>
         </div>
     </div>
 </div>
+
 {% endblock %}
