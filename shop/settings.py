@@ -10,9 +10,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = "django-insecure-b3m^pg_0vo_vk9a%evdd-_-7oi9vs750u9e3x#%6m)ry4u(0f1"
 
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["89.116.27.28", "localhost", "nito.nbesoro.com", "127.0.0.1"]
+CSRF_TRUSTED_ORIGINS = ["https://nito.nbesoro.com"]
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+SESSION_COOKIE_SAMESITE = "Lax"
 
 INSTALLED_APPS = [
     "django.contrib.admin",
