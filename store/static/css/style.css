@@ -134,7 +134,7 @@ header a {
 }
 .cart-icon {
     font-size: 24px;
-    color: #333;
+    color: #f2e5e5;
     text-decoration: none;
 }
 .cart-count {
@@ -237,7 +237,7 @@ header a {
     justify-content: space-between;
     align-items: center;
     background-color: #35424a;
-    padding: 25px;
+    padding: 20px;
     position: fixed;
     top: 0;
     left: 0;

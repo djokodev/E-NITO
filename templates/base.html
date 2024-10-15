@@ -14,7 +14,7 @@
         <div class="container">
             <div class="header-bar">
                 <div class="header-left">
-                        <h3>NITO'S STORE</h3>
+                        <a href="/"><h3>NITO'S STORE</h3></a>
                 </div>
 
                 {% if not user.is_authenticated %}
@@ -27,23 +27,23 @@
                 {% if user.is_authenticated %}
 
                 <div class="header-right">
-                    <p>Bienvenue {{ user.username }}!  
-                        <a href="{% url 'logout' %}">Deconnexion</a>
-                    </p>
+                    <p>Bienvenue {{ user.username }},  <a href="{% url 'logout' %}">Deconnexion</a></p>
+                   
                 </div>
+
+                {% if user.cart %}
+                    <div class="cart-icon-container">
+                        <div>
+                            <a href="{% url 'cart' %}" class="cart-icon">
+                                <i class="fas fa-shopping-cart"></i>
+                                    <span class="cart-count">{{ user.cart.orders.count }}</span>
+                            </a>                        
+                        </div>
+                    </div>
+                {% endif %}
                 {% endif %}
 
             </div>
-
-        
-        {% if user.cart %}
-            <div class="cart-icon-container">
-                <a href="{% url 'cart' %}" class="cart-icon">
-                    <i class="fas fa-shopping-cart"></i>
-                        <span class="cart-count">{{ user.cart.orders.count }}</span>
-                </a>
-            </div>
-        {% endif %}
 
     </div>
 

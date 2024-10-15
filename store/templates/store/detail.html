@@ -16,10 +16,21 @@
             {% if user.is_authenticated %}
                 <a href="{% url 'add_to_cart' product.slug %}" class="btn">Ajouter au panier</a>
             {% endif %}
-            
+
+            {% if not user.is_authenticated %}
+                <a class="btn" id="openPopup">Ajouter au panier</a>
+            {% endif %}
+
             <a href="{% url 'home' %}" class="btnr">Retour</a>
         </div>
     </div>
 </div>
+
+<script>
+    document.getElementById("openPopup").addEventListener("click", function(event) {
+        event.preventDefault(); 
+        alert("Connectez-vous pour ajouter le produit !");
+    });
+</script>
 
 {% endblock %}
